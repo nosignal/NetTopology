@@ -13,6 +13,12 @@ svg {
   fill: black;
 }
 
+.node tspan {
+  font: bold 16px monospace;
+  fill: red;
+}
+
 .link {
   stroke: steelblue;
 }
+

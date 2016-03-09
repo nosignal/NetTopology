@@ -1,0 +1,18 @@
+/* Styles go here */
+
+svg {
+  background-color: lightgreen;
+}
+
+.node circle {
+  fill: red;
+}
+
+.node text {
+  font: bold 12px monospace;
+  fill: black;
+}
+
+.link {
+  stroke: steelblue;
+}

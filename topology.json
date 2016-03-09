@@ -1,0 +1,58 @@
+{
+  "devices": [
+    {
+      "_id": "a42ebc02-e727-11e5-9730-9a79f06e9478",
+      "name": "Gaateway Router",
+      "category": "router",
+      "ipv4":"192.168.1.254",
+      "ipv6":"fd12:3456:789a:1::1",
+      "url": "http://192.168.1.254"
+    },
+    {
+      "_id": "fad224ec-6e9c-4b9d-90b2-d3df6132a6d5",
+      "name": "B1 Switch",
+      "category": "switch",
+      "ipv4":"192.168.1.10",
+      "ipv6":"none",
+      "url": "http://192.168.1.10"
+    },
+    {
+      "_id": "42a8ba9f-7044-49d6-890c-4a5eb68a6251",
+      "name": "1F Switch",
+      "category": "switch",
+      "ipv4":"192.168.1.20",
+      "ipv6":"none",
+      "url": "http://192.168.1.20"
+    },
+    {
+      "_id": "b44fe1d6-c431-49bd-8419-3046bcc812a7",
+      "name": "2F Switch",
+      "category": "switch",
+      "ipv4":"192.168.1.30",
+      "ipv6":"none",
+      "url": "http://192.168.1.30"
+    }
+  ],
+  "links": [
+    {
+      "_id": "7fa685a6-db83-4359-9564-4f4a502bb673",
+      "endpoint1": "a42ebc02-e727-11e5-9730-9a79f06e9478",
+      "endpoint2": "a42ebc02-e727-11e5-9730-9a79f06e9478"
+    },
+    {
+      "_id": "9ead2ef7-a011-4767-9550-1101076ef9b0",
+      "endpoint1": "a42ebc02-e727-11e5-9730-9a79f06e9478",
+      "endpoint2": "fad224ec-6e9c-4b9d-90b2-d3df6132a6d5"
+    },
+    {
+      "_id": "8218dee0-9046-451f-b1df-c53ac1a8acba",
+      "endpoint1": "fad224ec-6e9c-4b9d-90b2-d3df6132a6d5",
+      "endpoint2": "42a8ba9f-7044-49d6-890c-4a5eb68a6251"
+    },
+    {
+      "_id": "d32a7db2-8f65-4c66-a72f-03cb08c84b62",
+      "endpoint1": "b44fe1d6-c431-49bd-8419-3046bcc812a7",
+      "endpoint2": "42a8ba9f-7044-49d6-890c-4a5eb68a6251"
+    }
+  ]
+}

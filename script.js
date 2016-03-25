@@ -1,9 +1,13 @@
-// Code goes here
+// draw network topology with json data
 
-var width = 640,
-  height = 480;
+var width = 640;
+var height = 480;
+var root = d3.select("body");
 
-var svg = d3.select("body").append("svg")
+root.append("h1").append("text").text("Network Topology Graph");
+root.append("h3").append("text").text("Draw with D3 via JSON data");
+
+var svg = root.append("svg")
   .attr("width", width)
   .attr("height", height);
 

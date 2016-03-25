@@ -56,9 +56,12 @@ d3.json("topology.json", function(error, json) {
     .attr("class", "node")
     .call(force.drag);
 
-  node.append("circle")
-    .attr("class", "node")
-    .attr("r", 5);
+  node.append("image")
+    .attr({"xlink:href" : "images/router.png"})
+    .attr("x", "-15px")
+    .attr("y", "-15px")
+    .attr("width", "30px")
+    .attr("height", "30px");
 
   var $text = node.append("svg:a")
     .attr("xlink:href", function(d) {

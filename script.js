@@ -2,6 +2,17 @@
 
 var width = 640;
 var height = 480;
+var imageByType = {
+"host_online" : "images/host.png",
+"router_online" : "images/router.png",
+"switch_online" : "images/switch.png",
+"ap_online" : "images/ap.png",
+"host_offline" : "images/host.png",
+"router_offline" : "images/router.png",
+"switch_offline" : "images/switch.png",
+"ap_offline" : "images/ap.png"
+};
+
 var root = d3.select("body");
 
 root.append("h1").append("text").text("Network Topology Graph");
@@ -57,7 +68,9 @@ d3.json("topology.json", function(error, json) {
     .call(force.drag);
 
   node.append("image")
-    .attr({"xlink:href" : "images/router.png"})
+    .attr("xlink:href", function(d) {
+      return imageByType[d.category+"_"+d.status]
+    })
     .attr("x", "-15px")
     .attr("y", "-15px")
     .attr("width", "30px")
@@ -73,31 +86,31 @@ d3.json("topology.json", function(error, json) {
     })
     .attr("x", 12);
 
-  link.on("mouseover",function(d){
+  link.on("mouseover", function(d) {
     tooltip.html("Link speed: " + d.speed)
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY + 20) + "px")
                 .style("opacity",1.0);
     })
-    .on("mousemove",function(d){
+    .on("mousemove", function(d) {
         tooltip.style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY + 20) + "px");
     })
-    .on("mouseout",function(d){
+    .on("mouseout", function(d) {
         tooltip.style("opacity",0.0);
     })
 
-  node.on("mouseover",function(d){
+  node.on("mouseover", function(d) {
     tooltip.html("ipv4: " + d.ipv4 + "</br>" + "ipv6: " + d.ipv6)
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY + 20) + "px")
                 .style("opacity",1.0);
     })
-    .on("mousemove",function(d){
+    .on("mousemove", function(d) {
         tooltip.style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY + 20) + "px");
     })
-    .on("mouseout",function(d){
+    .on("mouseout", function(d) {
         tooltip.style("opacity",0.0);
     })
 

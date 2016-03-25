@@ -13,6 +13,11 @@ var force = d3.layout.force()
   .charge(-600)
   .size([width, height]);
 
+var tooltip = d3.select("body")
+  .append("div")
+  .attr("class","tooltip")
+  .style("opacity",0.0);
+
 d3.json("topology.json", function(error, json) {
   var edges = [];
   json.links.forEach(function(e) {
@@ -26,7 +31,8 @@ d3.json("topology.json", function(error, json) {
     edges.push({
       source: endpoint1,
       target: endpoint2,
-      value: e._id
+      value: e._id,
+      speed: e.speed
     });
   });
 
@@ -60,44 +66,33 @@ d3.json("topology.json", function(error, json) {
     })
     .attr("x", 12);
 
-  var $tspan = [];
-
-  for (i = 0; i < 2; i++) {
-    $tspan[i] = $text.append('tspan');
-  }
-
-  $tspan[0]
-    .text(function(d) {
-      return "ipv4: " + d.ipv4;
+  link.on("mouseover",function(d){
+    tooltip.html("Link speed: " + d.speed)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 20) + "px")
+                .style("opacity",1.0);
     })
-    .attr("name", "t0")
-    .attr("x", 12)
-    .attr("dy", "1.2em")
-    //.style("visibility", "hidden");
-    //.style("opacity", 0);
-    .style("display", "none");
-
-  $tspan[1]
-    .text(function(d) {
-      return "ipv6: " + d.ipv6;
+    .on("mousemove",function(d){
+        tooltip.style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 20) + "px");
     })
-    .attr("name", "t1")
-    .attr("x", 12)
-    .attr("dy", "1.2em")
-    //.style("visibility", "hidden");
-    //.style("opacity", 0);
-    .style("display", "none");
-
-  node.on('mouseover', function(d) {
-      //return d3.select(this).select("text").selectAll("tspan").style("visibility", "visible");
-      //return d3.select(this).select("text").selectAll("tspan").style("opacity", 1);
-      return d3.select(this).select("text").selectAll("tspan").style("display", "block");
+    .on("mouseout",function(d){
+        tooltip.style("opacity",0.0);
     })
-    .on('mouseout', function(d) {
-      //return d3.select(this).select("text").selectAll("tspan").style("visibility", "hidden");
-      //return d3.select(this).select("text").selectAll("tspan").style("opacity", 0);
-      return d3.select(this).select("text").selectAll("tspan").style("display", "none");
-    });
+
+  node.on("mouseover",function(d){
+    tooltip.html("ipv4: " + d.ipv4 + "</br>" + "ipv6: " + d.ipv6)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 20) + "px")
+                .style("opacity",1.0);
+    })
+    .on("mousemove",function(d){
+        tooltip.style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 20) + "px");
+    })
+    .on("mouseout",function(d){
+        tooltip.style("opacity",0.0);
+    })
 
   force.on("tick", function() {
     link.attr("x1", function(d) {
@@ -118,4 +113,3 @@ d3.json("topology.json", function(error, json) {
     });
   });
 });
-

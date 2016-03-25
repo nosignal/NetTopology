@@ -18,7 +18,20 @@ svg {
   fill: red;
 }
 
-.link {
-  stroke: steelblue;
+.tooltip{
+  position: absolute;
+  width: 120;
+  height: auto;
+  font-family: simsun;
+  font-size: 14px;
+  text-align: left;
+  border-style: solid; 
+  border-width: 1px;
+  background-color: white;
+  border-radius: 5px;
 }
 
+.link {
+  stroke: steelblue;
+  stroke-width: 3px;
+}
